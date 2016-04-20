@@ -1,0 +1,25 @@
+{
+  "name": "response-format",
+  "version": "1.0.0",
+  "description": "Module which will provide HTTP-friendly error objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GJ2511/response-format.git"
+  },
+  "keywords": [
+    "error"
+  ],
+  "engines": {
+    "node": ">=5.5.0"
+  },
+  "author": "@GJ (Gaurav Joshi)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GJ2511/response-format/issues"
+  },
+  "homepage": "https://github.com/GJ2511/response-format#readme"
+}
