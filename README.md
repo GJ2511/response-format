@@ -25,10 +25,10 @@ const Format = require('response-format');
 ```
 
 Each utility returns an Object which includes the following properties:
-	- `error` - true, false or null (if not specified).
-	- `statusCode` - the HTTP status code.
-	- `message` - string containing message (if not specified will return a pre-defined set of messages according to status code )
-	- `data` - response payload (null in case of blank or error)
+- `error` - true, false or null (if not specified).
+- `statusCode` - the HTTP status code.
+- `message` - string containing message (if not specified will return a pre-defined set of messages according to status code )
+- `data` - response payload (null in case of blank or error)
 
 ## Methods
 
