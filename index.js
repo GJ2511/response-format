@@ -5,4 +5,4 @@ const Format = require('./lib/format')
  *
  * @api public
  */
-exports = module.exports = new Format();
+exports = module.exports = Format;
