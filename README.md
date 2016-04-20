@@ -4,39 +4,30 @@ Module which provides HTTP-friendly error objects
 
 Author: [Gaurav Joshi](https://github.com/GJ2511)
 
-<!-- toc -->
-
 - [Response-format](#Response-format)
   - [Methods](#methods)
     - [`create(statusCode, [error, message, data])`](#createstatuscode-message-data)
-  	
-
-<!-- tocstop -->
+    - [`success([message, data])`](#success)
+    - [`badRequest([message, data])`](#badRequest)
+    - [`unAuth­orized([message, data])`](#unAuth­orized)
+    - [`forbidden([message, data])`](#forbidden)
+    - [`notFound([message, data])`](#notFound)
+    - [`notAllowed([message, data])`](#notAllowed)
+  	- [`requestTimeout([message, data])`](#requestTimeout)
+    - [`internalError([message, data])`](#internalError)
+    - [`badGateway([message, data])`](#badGateway)
+    - [`unavailable([message, data])`](#unavailable)
+    - [`gatewayTimeout([message, data])`](#gatewayTimeout)
 
 # Response Format
 
-**boom** provides a set of utilities for returning HTTP errors. Each utility returns a `Boom` error response
-object (instance of `Error`) which includes the following properties:
-- `isBoom` - if `true`, indicates this is a `Boom` object instance.
-- `isServer` - convenience bool indicating status code >= 500.
-- `message` - the error message.
-- `output` - the formatted response. Can be directly manipulated after object construction to return a custom
-  error response. Allowed root keys:
-    - `statusCode` - the HTTP status code (typically 4xx or 5xx).
-    - `headers` - an object containing any HTTP headers where each key is a header name and value is the header content.
-    - `payload` - the formatted object used as the response payload (stringified). Can be directly manipulated but any
-      changes will be lost
-      if `reformat()` is called. Any content allowed and by default includes the following content:
-        - `statusCode` - the HTTP status code, derived from `error.output.statusCode`.
-        - `error` - the HTTP status message (e.g. 'Bad Request', 'Internal Server Error') derived from `statusCode`.
-        - `message` - the error message derived from `error.message`.
-- inherited `Error` properties.
+Each utility returns an Object which includes the following properties:
+	- `error` - true, false or null (if not specified).
+	- `statusCode` - the HTTP status code.
+	- `message` - string containing message (if not specified will return a pre-defined set of messages according to status code )
+	- `data` - response payload (null in case of blank or error)
 
-The `Boom` object also supports the following method:
-- `reformat()` - rebuilds `error.output` using the other object properties.
-
-
-## Helper Methods
+## Methods
 
 ### `create(statusCode, [message], [data])`
 
