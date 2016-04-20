@@ -19,7 +19,7 @@ Author: [Gaurav Joshi](https://github.com/GJ2511)
     - [`unavailable([message, data])`](#unavailable)
     - [`gatewayTimeout([message, data])`](#gatewayTimeout)
 
-# Response Format
+## Response-format
 
 Each utility returns an Object which includes the following properties:
 	- `error` - true, false or null (if not specified).
@@ -29,16 +29,13 @@ Each utility returns an Object which includes the following properties:
 
 ## Methods
 
-### `create(statusCode, [message], [data])`
+### `create(statusCode, [error, message, data])`
 
-Generates an `Error` object with the **boom** decorations where:
-- `statusCode` - an HTTP error code number. Must be greater or equal 400.
+Generates a decorated response object where:
+- `statusCode` - an HTTP error code number.
 - `message` - optional message string.
-- `data` - additional error data set to `error.data` property.
-
-```js
-var error = Boom.create(400, 'Bad request', { timestamp: Date.now() });
-```
+- `data` - response payload.
+- `error` - true, false or null (if not specified).
 
 ## HTTP 4xx Errors
 
