@@ -4,7 +4,7 @@ Module which provides HTTP-friendly error objects
 
 Author: [Gaurav Joshi](https://github.com/GJ2511)
 
-- [Response-format](#Response-format)
+- [Response-format](#start)
   - [Methods](#methods)
     - [`create(statusCode, [error, message, data])`](#createstatuscode-message-data)
     - [`success([message, data])`](#success)
@@ -19,7 +19,7 @@ Author: [Gaurav Joshi](https://github.com/GJ2511)
     - [`unavailable([message, data])`](#unavailable)
     - [`gatewayTimeout([message, data])`](#gatewayTimeout)
 
-## Response-format
+## start
 
 Each utility returns an Object which includes the following properties:
 	- `error` - true, false or null (if not specified).
