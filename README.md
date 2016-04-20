@@ -19,7 +19,7 @@ Author: [Gaurav Joshi](https://github.com/GJ2511)
     - [`unavailable([message, data])`](#unavailable)
     - [`gatewayTimeout([message, data])`](#gatewayTimeout)
 
-## start
+## Start
 
 Each utility returns an Object which includes the following properties:
 	- `error` - true, false or null (if not specified).
@@ -37,23 +37,24 @@ Generates a decorated response object where:
 - `data` - response payload.
 - `error` - true, false or null (if not specified).
 
-## HTTP 4xx Errors
+### `success([message, data])`
 
-### `Boom.badRequest([message], [data])`
-
-Returns a 400 Bad Request error where:
+Returns a 200 Success where:
+- `statusCode` - 200
+- `error` - false
 - `message` - optional message.
-- `data` - optional additional error data.
+- `data` - optional payload.
 
 ```js
-Boom.badRequest('invalid query');
+Format.success();
 ```
 
 Generates the following response payload:
 
 ```json
 {
-    "statusCode": 400,
-    "error": "Bad Request",
-    "message": "invalid query"
+    "statusCode": 200,
+    "error": false,
+    "message": "OK",
+    "data": null
 }
