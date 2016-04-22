@@ -1,96 +1,97 @@
-var chai = require('chai');
-var expect = chai.expect ;
-var should = chai.should();
-var checkStatusCode = require('../lib/helpers.js');
-var format = require('../lib/format')
+"use strict"
+const chai = require('chai')
+const expect = chai.expect 
+const should = chai.should()
+const checkStatusCode = require('../lib/helpers.js')
+const format = require('../lib/format')
 const STATUS_CODES = require('../lib/internals')
-//var  = format.checkStatusCode;
 
-describe("format",function(){
 
-	describe("create function", function() {
-		it("must exist",function(done){
+describe("format", () =>  {
+
+	describe("create function", () =>  {
+		it("must exist", (done) =>  {
 			expect(format).to.have.property('create')
 			expect(format.create).to.be.a('function')
-			done();
+			done()
 		})
 		
-		describe("create",function(){
+		describe("create",  () =>  {
 			
-			it('returns error message if status code not specified',function(done){
+			it('returns error message if status code not specified', (done) =>  {
 					try{
-						format.create(null,null,null,{})
+						format.create(null, null, null, {})
 					}
 					catch(msg){
 						expect(msg.toString()).to.equal('Error: Status code is required')
 					}
-					done();
+					done()
 			})
 
-			it('returns error message if status code specified but not a number',function(done){
+			it('returns error message if status code specified but not a number', (done) =>  {
 					try{
-						format.create('200',null,null,{})
+						format.create('200', null, null, {})
 					}
 					catch(msg){
-						expect(msg.toString()).to.equal('Status code not a number')
+						expect( msg.toString()).to.equal('Status code not a number')
 					}
-					done();
+					done()
 			})
 
-			describe("returns",function(){
-				var result,error = 'dummy error',msg = 'dummy msg',obj ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,error = 'dummy error',msg = 'dummy msg',obj ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.create(400, error, msg, obj)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
-				describe("object",function(){
+				describe("object", () =>  {
 					
 					
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
-						expect(result).to.have.property('statusCode')
-						done();
+					describe("statusCode Field",() =>  {
+						it("must exist", (done) =>  {
+							expect(result).to.have.property('statusCode')
+							done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be the same as come in request", function(done) {
+						it("must be the same as come in request",  (done) =>  {
 							expect(result.error).to.equal(error)
 							done()
 						})
 					})
 
-					describe("Message Field",function(){
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request", function(done) {
+						it("must be the same as come in request",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request", function(done) {
+						it("must be the same as come in request",  (done) =>  {
 							expect(result.data).to.equal(obj)
 							done()
 						})
@@ -100,73 +101,73 @@ describe("format",function(){
 		})
 	})
 
-	describe("success function",function() {
-		it("must exist", function(done) {
+	describe("success function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('success')
 			expect(format.success).to.be.a('function')
 			done()
 		})
 
-		describe("success",function(){
+		describe("success", () =>  {
 			
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.success(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
-				describe("object",function(){
+				
+				describe("object", () =>  {
 					
-					
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
-						expect(result).to.have.property('statusCode')
-						done();
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
+							expect(result).to.have.property('statusCode')
+							done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 200",function(done){
+						it("must be equal to 200", (done) =>  {
 							expect(result.statusCode).to.equal(200)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be false",  (done) =>  {
 							expect(result.error).to.equal(false)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request", function(done) {
+						it("must be the same as come in request",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -177,73 +178,73 @@ describe("format",function(){
 	})
 
 
-	describe("badRequest function",function() {
-		it("must exist", function(done) {
+	describe("badRequest function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('badRequest')
 			expect(format.badRequest).to.be.a('function')
 			done()
 		})
 
-		describe("badRequest",function(){
+		describe("badRequest", () =>  {
 			
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.badRequest(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
-				describe("object",function(){
+				describe("object", () =>  {
 					
 					
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
-						expect(result).to.have.property('statusCode')
-						done();
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
+							expect(result).to.have.property('statusCode')
+							done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 400",function(done){
+						it("must be equal to 400", (done) =>  {
 							expect(result.statusCode).to.equal(400)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request", function(done) {
+						it("must be the same as come in request",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -253,73 +254,73 @@ describe("format",function(){
 		})
 	})
 
-	describe("unAuthorized function",function() {
-		it("must exist", function(done) {
+	describe("unAuthorized function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('unAuthorized')
 			expect(format.unAuthorized).to.be.a('function')
 			done()
 		})
 
-		describe("unAuthorized",function(){
+		describe("unAuthorized", () =>  {
 			
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.unAuthorized(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
 				
-				describe("object",function(){
+				describe("object", () =>  {
 				
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
 						expect(result).to.have.property('statusCode')
-						done();
+						done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 402",function(done){
+						it("must be equal to 402", (done) =>  {
 							expect(result.statusCode).to.equal(402)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -329,73 +330,73 @@ describe("format",function(){
 		})
 	})
 
-	describe("forbidden function",function() {
-		it("must exist", function(done) {
+	describe("forbidden function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('forbidden')
 			expect(format.forbidden).to.be.a('function')
 			done()
 		})
 
-		describe("forbidden",function(){
+		describe("forbidden", () =>  {
 
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.forbidden(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
 				
-				describe("object",function(){
+				describe("object", () =>  {
 				
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
 						expect(result).to.have.property('statusCode')
-						done();
+						done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 403",function(done){
+						it("must be equal to 403", (done) =>  {
 							expect(result.statusCode).to.equal(403)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -405,73 +406,73 @@ describe("format",function(){
 		})
 	})
 
-	describe("notFound function",function() {
-		it("must exist", function(done) {
+	describe("notFound function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('forbidden')
 			expect(format.forbidden).to.be.a('function')
 			done()
 		})
 
-		describe("notFound",function(){
+		describe("notFound", () =>  {
 
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.notFound(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
 				
-				describe("object",function(){
+				describe("object", () =>  {
 				
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
 						expect(result).to.have.property('statusCode')
-						done();
+						done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 404",function(done){
+						it("must be equal to 404", (done) =>  {
 							expect(result.statusCode).to.equal(404)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -481,73 +482,73 @@ describe("format",function(){
 		})
 	})
 
-	describe("notAllowed function",function() {
-		it("must exist", function(done) {
+	describe("notAllowed function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('forbidden')
 			expect(format.forbidden).to.be.a('function')
 			done()
 		})
 
-		describe("notAllowed",function(){
+		describe("notAllowed", () =>  {
 
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.notAllowed(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
 				
-				describe("object",function(){
+				describe("object", () =>  {
 				
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
 						expect(result).to.have.property('statusCode')
-						done();
+						done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 405",function(done){
+						it("must be equal to 405", (done) =>  {
 							expect(result.statusCode).to.equal(405)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -557,73 +558,73 @@ describe("format",function(){
 		})
 	})
 	
-	describe("requestTimeout function",function() {
-		it("must exist", function(done) {
+	describe("requestTimeout function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('forbidden')
 			expect(format.forbidden).to.be.a('function')
 			done()
 		})
 
-		describe("requestTimeout",function(){
+		describe("requestTimeout", () =>  {
 
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.requestTimeout(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
 				
-				describe("object",function(){
+				describe("object", () =>  {
 				
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
 						expect(result).to.have.property('statusCode')
-						done();
+						done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 408",function(done){
+						it("must be equal to 408", (done) =>  {
 							expect(result.statusCode).to.equal(408)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -633,73 +634,73 @@ describe("format",function(){
 		})
 	})
 	
-	describe("internalError function",function() {
-		it("must exist", function(done) {
+	describe("internalError function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('forbidden')
 			expect(format.forbidden).to.be.a('function')
 			done()
 		})
 
-		describe("internalError",function(){
+		describe("internalError", () =>  {
 
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.internalError(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
 				
-				describe("object",function(){
+				describe("object", () =>  {
 				
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
 						expect(result).to.have.property('statusCode')
-						done();
+						done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 500",function(done){
+						it("must be equal to 500", (done) =>  {
 							expect(result.statusCode).to.equal(500)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -709,73 +710,73 @@ describe("format",function(){
 		})
 	})
 
-	describe("badGateway function",function() {
-		it("must exist", function(done) {
+	describe("badGateway function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('forbidden')
 			expect(format.forbidden).to.be.a('function')
 			done()
 		})
 
-		describe("badGateway",function(){
+		describe("badGateway", () =>  {
 
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.badGateway(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
 				
-				describe("object",function(){
+				describe("object", () =>  {
 				
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
 						expect(result).to.have.property('statusCode')
-						done();
+						done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 502",function(done){
+						it("must be equal to 502", (done) =>  {
 							expect(result.statusCode).to.equal(502)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -785,73 +786,73 @@ describe("format",function(){
 		})
 	})
 	
-	describe("unavailable function",function() {
-		it("must exist", function(done) {
+	describe("unavailable function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('forbidden')
 			expect(format.forbidden).to.be.a('function')
 			done()
 		})
 
-		describe("unavailable",function(){
+		describe("unavailable", () =>  {
 
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.unavailable(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
 				
-				describe("object",function(){
+				describe("object", () =>  {
 				
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
 						expect(result).to.have.property('statusCode')
-						done();
+						done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 503",function(done){
+						it("must be equal to 503", (done) =>  {
 							expect(result.statusCode).to.equal(503)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})
@@ -861,73 +862,73 @@ describe("format",function(){
 		})
 	})
 	
-	describe("gatewayTimeout function",function() {
-		it("must exist", function(done) {
+	describe("gatewayTimeout function",() =>  {
+		it("must exist",  (done) =>  {
 			expect(format).to.have.property('forbidden')
 			expect(format.forbidden).to.be.a('function')
 			done()
 		})
 
-		describe("gatewayTimeout",function(){
+		describe("gatewayTimeout", () =>  {
 
-			describe("returns",function(){
-				var result,msg = 'dummy msg',data ={obj:"dummy"} ;
-				it("must be an object",function(done){
+			describe("returns", () =>  {
+				let result,msg = 'dummy msg',data ={obj:"dummy"} 
+				it("must be an object", (done) =>  {
 					result = format.gatewayTimeout(msg, data)
 					expect(result).to.be.an('object')
 					done()
 				})
 				
-				it("object must have four fields",function(done){
+				it("object must have four fields", (done) =>  {
 					expect(Object.keys(result).length).to.equal(4)
 					done()
 				})
 				
-				describe("object",function(){
+				describe("object", () =>  {
 				
-					describe("statusCode Field",function(){
-						it("must exist",function(done){
+					describe("statusCode Field", () =>  {
+						it("must exist", (done) =>  {
 						expect(result).to.have.property('statusCode')
-						done();
+						done()
 						})
-						it("must be a number",function(done){
+						it("must be a number", (done) =>  {
 							expect(result).to.have.property('statusCode').that.be.a('number')
-							done();
+							done()
 						})
-						it("must be equal to 504",function(done){
+						it("must be equal to 504", (done) =>  {
 							expect(result.statusCode).to.equal(504)
-							done();
+							done()
 						})
 					})
 
-					describe("Error Field",function() {
-						it("must exist", function(done) {
+					describe("Error Field",() =>  {
+						it("must exist",  (done) =>  {
 							expect(result).to.have.property('error')
-							done();
+							done()
 						})
-						it("must be false", function(done) {
+						it("must be true",  (done) =>  {
 							expect(result.error).to.equal(true)
 							done()
 						})
 					})
 
-					describe("Message Field",function() {
-						it("must exist",function(done){
+					describe("Message Field",() =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('message')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.message).to.equal(msg)
 							done()
 						})
 					})
 
-					describe("Data Field",function(){
-						it("must exist",function(done){
+					describe("Data Field", () =>  {
+						it("must exist", (done) =>  {
 							expect(result).to.have.property('data')
-							done();
+							done()
 						})
-						it("must be the same as come in request if specified", function(done) {
+						it("must be the same as come in request if specified",  (done) =>  {
 							expect(result.data).to.equal(data)
 							done()
 						})

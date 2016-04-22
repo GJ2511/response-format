@@ -1,17 +1,17 @@
-var chai = require('chai');
-var expect = chai.expect ;
-var StatusCode = require('../lib/internals.js');
-var should = chai.should();
+const chai = require('chai')
+const expect = chai.expect 
+const StatusCode = require('../lib/internals.js')
+const should = chai.should()
 
 
-describe("STATUS_CODES",function() {
+describe("STATUS_CODES", ()=> {
 	
-	it("Is an object", function(done){
+	it("Is an object", (done)=> {
 		expect(StatusCode).to.be.an('object')
-		done();
+		done()
 	})
 
-	it("has total 70 keys " , function(done) {
+	it("has total 70 keys " , (done)=> {
 		expect( Object.keys(StatusCode).length ).to.equal(70)
 		done()
 	})
