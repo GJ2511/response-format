@@ -4,7 +4,7 @@
   "description": "Module which will provide HTTP-friendly error objects",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/GJ2511/response-format/issues"
   },
-  "homepage": "https://github.com/GJ2511/response-format#readme"
+  "homepage": "https://github.com/GJ2511/response-format#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5"
+  }
 }
