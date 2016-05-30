@@ -32,7 +32,7 @@ Each utility returns an Object which includes the following properties:
 
 ## Methods
 
-### `create(statusCode, [error, message, data])`
+### `create(statusCode, [error, message, data])`(#createstatuscode-message-data)
 
 Generates a decorated response object where:
 - `statusCode` - an HTTP error code number.
