@@ -61,7 +61,7 @@ Generates the following response payload:
     "message": "OK",
     "data": null
 }
-
+```
 ### `badRequest([message, data])`
 
 Returns a 400 Error where:
@@ -83,7 +83,7 @@ Generates the following response payload:
     "message": "Bad Request",
     "data": null
 }
-
+```
 ### `unAuth­orized([message, data])`
 
 Returns a 402 Error where:
@@ -105,7 +105,7 @@ Generates the following response payload:
     "message": "Unauth­orized",
     "data": null
 }
-
+```
 ### `forbidden([message, data])`
 
 Returns a 403 Error where:
@@ -127,7 +127,7 @@ Generates the following response payload:
     "message": "Forbidden",
     "data": null
 }
-
+```
 ### `notFound([message, data])`
 
 Returns a 404 Error where:
@@ -149,7 +149,7 @@ Generates the following response payload:
     "message": "Not Found",
     "data": null
 }
-
+```
 ### `notAllowed([message, data])`
 
 Returns a 405 Error where:
@@ -171,7 +171,7 @@ Generates the following response payload:
     "message": "Method Not Allowed",
     "data": null
 }
-
+```
 ### `requestTimeout([message, data])`
 
 Returns a 408 Error where:
@@ -193,7 +193,7 @@ Generates the following response payload:
     "message": "Request Timeout",
     "data": null
 }
-
+```
 ### `internalError([message, data])`
 
 Returns a 500 Error where:
@@ -215,7 +215,7 @@ Generates the following response payload:
     "message": "Internal Server Error",
     "data": null
 }
-
+```
 ### `badGateway([message, data])`
 
 Returns a 502 Error where:
@@ -237,7 +237,7 @@ Generates the following response payload:
     "message": "Bad Gateway",
     "data": null
 }
-
+```
 ### `unavailable([message, data])`
 
 Returns a 503 Error where:
@@ -259,7 +259,7 @@ Generates the following response payload:
     "message": "Service Unavai­lable",
     "data": null
 }
-
+```
 ### `gatewayTimeout([message, data])`
 
 Returns a 504 Error where:
@@ -281,3 +281,4 @@ Generates the following response payload:
     "message": "Gateway Timeout",
     "data": null
 }
+```
