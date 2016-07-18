@@ -32,7 +32,7 @@ Each utility returns an Object which includes the following properties:
 
 ## Methods
 
-### `create(statusCode, [error, message, data])`(#createstatuscode-message-data)
+### `create(statusCode, [error, message, data])`
 
 Generates a decorated response object where:
 - `statusCode` - an HTTP error code number.
@@ -79,7 +79,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 400,
-    "error": false,
+    "error": true,
     "message": "Bad Request",
     "data": null
 }
@@ -101,7 +101,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 402,
-    "error": false,
+    "error": true,
     "message": "Unauth­orized",
     "data": null
 }
@@ -123,7 +123,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 403,
-    "error": false,
+    "error": true,
     "message": "Forbidden",
     "data": null
 }
@@ -145,7 +145,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 404,
-    "error": false,
+    "error": true,
     "message": "Not Found",
     "data": null
 }
@@ -167,7 +167,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 405,
-    "error": false,
+    "error": true,
     "message": "Method Not Allowed",
     "data": null
 }
@@ -189,7 +189,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 408,
-    "error": false,
+    "error": true,
     "message": "Request Timeout",
     "data": null
 }
@@ -211,7 +211,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 500,
-    "error": false,
+    "error": true,
     "message": "Internal Server Error",
     "data": null
 }
@@ -233,7 +233,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 502,
-    "error": false,
+    "error": true,
     "message": "Bad Gateway",
     "data": null
 }
@@ -255,7 +255,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 503,
-    "error": false,
+    "error": true,
     "message": "Service Unavai­lable",
     "data": null
 }
@@ -277,7 +277,7 @@ Generates the following response payload:
 ```json
 {
     "statusCode": 504,
-    "error": false,
+    "error": true,
     "message": "Gateway Timeout",
     "data": null
 }
