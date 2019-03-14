@@ -1,6 +1,6 @@
 {
   "name": "response-format",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Module which will provide HTTP-friendly error objects",
   "main": "index.js",
   "scripts": {
