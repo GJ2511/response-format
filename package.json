@@ -25,7 +25,7 @@
     "node": ">=5.5.0"
   },
   "author": "@GJ (Gaurav Joshi)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/GJ2511/response-format/issues"
   },
