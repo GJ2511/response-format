@@ -2,6 +2,8 @@ Response Format
 
 Module which provides HTTP-friendly error objects
 
+Typescript support
+
 Author: [Gaurav Joshi](https://github.com/GJ2511)
 
 - [Response-format](#start)
@@ -18,6 +20,7 @@ Author: [Gaurav Joshi](https://github.com/GJ2511)
     - [`badGateway([message, data])`](#user-content-badgatewaymessage-data)
     - [`unavailable([message, data])`](#user-content-unavailablemessage-data)
     - [`gatewayTimeout([message, data])`](#user-content-gatewaytimeoutmessage-data)
+  - [Typescript](#typescript)
 
 ## Start
 ```js
@@ -282,3 +285,9 @@ Generates the following response payload:
     "data": null
 }
 ```
+
+## Typescript
+
+You need `--esModuleInterop` flag for default-imported, you also see [document](https://www.typescriptlang.org/tsconfig#esModuleInterop) for more infomation
+
+For best convention, we suggest you set `--strictNullChecks` anywhere you write typescript code

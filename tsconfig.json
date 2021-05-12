@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "es5",
+        "lib": [
+            "dom",
+            "es2015"
+        ],
+        "module": "commonjs",
+        "baseUrl": ".",
+        "allowJs": true,
+        "esModuleInterop": true,
+        "strictNullChecks": false
+    },
+    "include": [
+        "*.d.ts",
+        "*.ts"
+    ],
+}
